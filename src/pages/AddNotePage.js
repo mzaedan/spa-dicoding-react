@@ -1,15 +1,15 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AddNotePage({ onAddNote }) {
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
   const navigate = useNavigate();
 
   const handleSubmit = (event) => {
     event.preventDefault();
     if (!title.trim() || !body.trim()) {
-      alert('Judul dan isi catatan tidak boleh kosong!');
+      alert("Judul dan isi catatan tidak boleh kosong!");
       return;
     }
 
@@ -21,7 +21,7 @@ function AddNotePage({ onAddNote }) {
       archived: false,
     };
     onAddNote(newNote);
-    navigate('/'); // Redirect to active notes page
+    navigate("/");
   };
 
   return (
@@ -36,9 +36,11 @@ function AddNotePage({ onAddNote }) {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
             placeholder="Judul catatan..."
-            maxLength="50" // Optional: add a max length for title
+            maxLength="50"
           />
-          <small className="char-limit">Sisa karakter: {50 - title.length}</small>
+          <small className="char-limit">
+            Sisa karakter: {50 - title.length}
+          </small>
         </div>
         <div className="form-group">
           <label htmlFor="body">Isi Catatan</label>
@@ -50,7 +52,9 @@ function AddNotePage({ onAddNote }) {
             rows="10"
           ></textarea>
         </div>
-        <button type="submit" className="add-note-button">Tambah Catatan</button>
+        <button type="submit" className="add-note-button">
+          Tambah Catatan
+        </button>
       </form>
     </section>
   );

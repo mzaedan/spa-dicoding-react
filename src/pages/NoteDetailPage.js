@@ -1,5 +1,5 @@
-import React from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import React from "react";
+import { useParams, useNavigate, Link } from "react-router-dom";
 
 function NoteDetailPage({ notes, onDelete, onToggleArchive }) {
   const { id } = useParams();
@@ -17,30 +17,36 @@ function NoteDetailPage({ notes, onDelete, onToggleArchive }) {
   }
 
   const handleDelete = () => {
-    if(window.confirm('Apakah Anda yakin ingin menghapus catatan ini?')) {
+    if (window.confirm("Apakah Anda yakin ingin menghapus catatan ini?")) {
       onDelete(note.id);
-      navigate('/'); // Redirect to active notes after delete
+      navigate("/");
     }
   };
 
   const handleToggleArchive = () => {
     onToggleArchive(note.id);
-    // Potentially navigate away if archiving, or stay if unarchiving from detail view
-    // For now, let's navigate to home to see the change reflected
-    navigate('/');
+    navigate("/");
   };
 
   return (
     <section className="note-detail-page">
       <h2 className="note-detail__title">{note.title}</h2>
-      <p className="note-detail__createdAt">{new Date(note.createdAt).toLocaleDateString()}</p>
+      <p className="note-detail__createdAt">
+        {new Date(note.createdAt).toLocaleDateString()}
+      </p>
       <p className="note-detail__body">{note.body}</p>
       <div className="note-detail__actions">
-        <button onClick={handleDelete} className="note-detail__button note-detail__button--delete">
+        <button
+          onClick={handleDelete}
+          className="note-detail__button note-detail__button--delete"
+        >
           Hapus
         </button>
-        <button onClick={handleToggleArchive} className="note-detail__button note-detail__button--archive">
-          {note.archived ? 'Batal Arsip' : 'Arsip'}
+        <button
+          onClick={handleToggleArchive}
+          className="note-detail__button note-detail__button--archive"
+        >
+          {note.archived ? "Batal Arsip" : "Arsip"}
         </button>
       </div>
     </section>
